@@ -8,9 +8,10 @@ import javax.validation.constraints.Size;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OdontologoModificacionEntradaDto {
+    // ID único del odontólogo a modificar
     @NotNull(message = "Debe proveerse el id del odontologo que se desea modificar")
     private Long id;
-
+    // Matrícula del odontólogo, con una longitud mínima de 10 caracteres
     @NotNull(message = "La matricula del odontólogo no puede ser nula")
     @NotBlank(message = "Debe especificarse la matricula del odontólogo")
     @Size(min = 10, message = "El campo debe tener mínimo 10 caracteres")
@@ -26,7 +27,7 @@ public class OdontologoModificacionEntradaDto {
     @NotBlank(message = "Debe especificarse el apellido del odontólogo")
     private String apellido;
 
-
+    // Constructor sin argumentos para intanciar sin información específica
     public OdontologoModificacionEntradaDto() {
     }
 

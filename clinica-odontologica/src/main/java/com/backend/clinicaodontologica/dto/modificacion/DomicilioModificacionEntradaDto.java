@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DomicilioModificacionEntradaDto {
 
+    // ID único del domicilio a modificar
     @NotNull(message = "Debe proveerse el id del domicilio que se desea modificar")
     private Long id;
 
@@ -16,11 +17,13 @@ public class DomicilioModificacionEntradaDto {
     @NotBlank(message = "El campo calle no puede estar en blanco")
     private String calle;
 
+    // Número de la propiedad, con un límite máximo de 8 dígitos
+
     @NotNull(message = "El campo numero no puede ser nulo")
     @Digits(integer = 8, fraction = 0, message = "El número debe tener como máximo 8 dígitos")
 
     private Integer numero;
-
+    // Localidad donde se encuentra el domicilio, no puede ser nulo ni estar en blanco
     @NotNull(message = "El campo localidad no puede ser nulo")
     @NotBlank(message = "El campo localidad no puede estar en blanco")
     private String localidad;
@@ -47,7 +50,7 @@ public class DomicilioModificacionEntradaDto {
     public void setId(Long id) {
         this.id = id;
     }
-
+    // Obtener el nombre de la calle
     public String getCalle() {
         return calle;
     }

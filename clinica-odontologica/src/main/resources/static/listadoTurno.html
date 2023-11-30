@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+
+<body>
+    <menu>
+        <nav class="navbar navbar-expand-lg navbar-dark  p-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Clínica Odontológica</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto ">
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" href="registroOdontologo.html">Registrar Odontólogo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" href="listadoOdontologos.html">Listar Odontólogos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" href="registroPaciente.html">Registrar Paciente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" href="listadoPacientes.html">Listar Pacientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" href="registroTurno.html">Registrar Turno</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 active" href="listadoTurnos.html">Listar Turnos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </menu>
+    <main>
+
+        <div id="form_update" class="form-body-hide">
+            <div class="row">
+                <div class="form-holder">
+                    <div class="form-content">
+                        <div class="form-items">
+                            <h3>Actualizar Turno</h3>
+                            <p>Complete todos los campos</p>
+                            <form id="update_turnos_form">
+                                <di>
+                                    <input value="" class="form-control" type="text" readonly name="turnoId"
+                                        id="turnoId" placeholder="Id Turno">
+                                </di>
+                                <div class="col-md-12">
+                                    <input value="" class="form-control" type="text" readonly name="odontologoId"
+                                        id="odontologoId" placeholder="Id Odontologo">
+                                    <!--<select class="form-select" name="form-select" id="pacientesSelect">
+                                    <option value="" selected>Selecciona un Paciente</option>
+                                </select>-->
+                                </div>
+                                <div class="col-md-12">
+                                    <input value="" class="form-control" type="text" readonly name="pacienteId"
+                                        id="pacienteId" placeholder="Id Paciente">
+                                    <!--<select class="form-select" name="form-select" id="odontologosSelect">
+                                    <option value="" selected>Selecciona un Odontólogo</option>
+                                </select>-->
+                                </div>
+                                <div class="fechaHora col-md-12 row  justify-content-arround">
+                                    <div class="col-md-6">
+                                        <input value="" class="form-control" type="date" name="fecha" id="fechaTurno"
+                                            placeholder="Fecha" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input value="" class="form-control" type="time" name="hora" id="horaTurno"
+                                            placeholder="Hora" required>
+                                    </div>
+                                </div>
+                                <div class="form-button mt-3">
+                                    <button id="submit" type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Actualizar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <h3 class="text-center p-4">Turnos</h3>
+            <table class="table table-hover" id="turnoTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha y Hora</th>
+                        <th>Id Odontólogo</th>
+                        <th>Odontólogo</th>
+                        <th>Id Paciente</th>
+                        <th>Paciente</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody id="turnoTableBody">
+
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <!--<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Confirmacion-->
+        <div class="modal fade" id="miModalConfirmacion" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                            id="btnAceptar">Aceptar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script src="js/turno/listarTurno.js"></script>
+    <script src="js/turno/updateTurno.js"></script>
+    <script src="js/turno/deleteTurno.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

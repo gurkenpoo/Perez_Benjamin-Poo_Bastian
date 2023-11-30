@@ -15,7 +15,7 @@ public class ClinicaOdontologicaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ClinicaOdontologicaApplication.class, args);
-        logger.info("ClinicaOdontologica is now running...");
+        logger.info("ClinicaOdontologica is online...");
     }
 
 

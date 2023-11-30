@@ -4,17 +4,23 @@ import com.backend.clinicaodontologica.dto.entrada.paciente.DomicilioEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.paciente.DomicilioEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.paciente.PacienteEntradaDto;
 import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
+import com.backend.clinicaodontologica.repository.PacienteRepository;
+import com.backend.clinicaodontologica.entity.Paciente;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 import com.backend.clinicaodontologica.service.impl.PacienteService;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 //@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -58,6 +64,31 @@ class PacienteServiceTest {
 
         assertTrue(pacientesDto.isEmpty());
 
+    }
+    @Mock
+    private PacienteRepository pacienteRepository;
+
+
+    @Test
+    @Order(4)
+    void deberiaBuscarUnPacientePorId() throws ResourceNotFoundException {
+        // Mock de datos necesarios
+        Paciente pacienteMock = new Paciente();
+        pacienteMock.setId(1L);
+        pacienteMock.setNombre("Juan");
+        pacienteMock.setDni(123456789);
+
+        // Configuración de comportamiento del mock
+        when(pacienteRepository.findById(1L)).thenReturn(Optional.of(pacienteMock));
+
+        // Llamada al método a probar
+        PacienteSalidaDto pacienteSalidaDto = pacienteService.buscarPacientePorId(1L);
+
+        // Verificación de resultados
+        assertNotNull(pacienteSalidaDto);
+        assertEquals(1L, pacienteSalidaDto.getId());
+        assertEquals("Juan", pacienteSalidaDto.getNombre());
+        assertEquals(123456789, pacienteSalidaDto.getDni());
     }
 
 

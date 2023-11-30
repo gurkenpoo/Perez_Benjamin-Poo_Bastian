@@ -20,8 +20,8 @@ public class OdontologoEntradaDto {
     private String nombre;
 
     @Size(max = 50, message = "El apellido de odontólogo debe tener hasta 50 caracteres")
-    @NotNull(message = "El apellido de odontólogo no puede ser nulo")
-    @NotBlank(message = "Debe especificarse el apellido del odontólogo")
+    @NotNull(message = "El apellido de odontologo no puede ser nulo")
+    @NotBlank(message = "Debe especificarse el apellido del odontologo")
     private String apellido;
 
     public OdontologoEntradaDto() {
